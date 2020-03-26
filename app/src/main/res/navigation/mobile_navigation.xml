@@ -33,13 +33,13 @@
         android:id="@+id/nav_me"
         android:name="com.example.planyourmurder.ui.model.mycharacter.MyCharacterFragment"
         android:label="@string/menu_me"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_mycharacter" />
 
     <fragment
         android:id="@+id/nav_mission"
         android:name="com.example.planyourmurder.ui.model.missions.MissionsFragment"
         android:label="@string/menu_mission"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_missions" />
 
     <fragment
         android:id="@+id/nav_events"

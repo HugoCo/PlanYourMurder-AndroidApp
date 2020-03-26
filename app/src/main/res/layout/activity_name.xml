@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.controller.MainActivity">
+    tools:context=".ui.controller.NameActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_code"
+        android:text="@string/enter_name"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <Button
-        android:id="@+id/activity_main_button_confirm"
+        android:id="@+id/activity_name_button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
@@ -29,17 +29,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/activity_main_editText"
+        android:id="@+id/activity_name_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="340dp"
         android:layout_marginEnd="24dp"
+        android:autofillHints=""
         android:ems="10"
-        android:inputType="numberSigned"
-        android:maxLength="6"
+        android:inputType="text"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

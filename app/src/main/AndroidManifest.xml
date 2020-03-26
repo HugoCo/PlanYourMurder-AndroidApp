@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.controller.HomePage"
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".ui.controller.NameActivity" />
+        <activity
+            android:name=".ui.controller.HomePageActivity"
             android:label="@string/title_activity_home_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -22,8 +22,8 @@ public class MyCharacterFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         myCharacterViewModel =
                 ViewModelProviders.of(this).get(MyCharacterViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        View root = inflater.inflate(R.layout.fragment_mycharacter, container, false);
+        final TextView textView = root.findViewById(R.id.textView2);
         myCharacterViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

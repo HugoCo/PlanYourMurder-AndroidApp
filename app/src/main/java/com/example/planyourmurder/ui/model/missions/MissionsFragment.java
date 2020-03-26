@@ -22,7 +22,7 @@ public class MissionsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         missionsViewModel =
                 ViewModelProviders.of(this).get(MissionsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        View root = inflater.inflate(R.layout.fragment_missions, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
         missionsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

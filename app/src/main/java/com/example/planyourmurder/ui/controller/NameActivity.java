@@ -11,23 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.planyourmurder.R;
-import com.example.planyourmurder.ui.model.Game;
 
-public class MainActivity extends AppCompatActivity {
+public class NameActivity extends AppCompatActivity {
 
     private Button button_confirm;
     private EditText editText;
-    private Game mGame;
-
-
+    public static final int HOME_PAGE_ACTIVITY_REQUEST_CODE = 42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mGame = new Game();
-        this.button_confirm= findViewById(R.id.activity_main_button_confirm);
-        this.editText=findViewById(R.id.activity_main_editText);
+        setContentView(R.layout.activity_name);
+        this.button_confirm= findViewById(R.id.activity_name_button_confirm);
+        this.editText=findViewById(R.id.activity_name_editText);
 
         button_confirm.setEnabled(false);
         editText.addTextChangedListener(new TextWatcher() {
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                button_confirm.setEnabled(s.toString().length() == 6);
+                button_confirm.setEnabled(s.toString().length() > 0);
             }
 
             @Override
@@ -49,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int gameNumber = Integer.parseInt(editText.getText().toString());
-                System.out.println(gameNumber);
-                mGame.setGameNumber(gameNumber);
-                Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
-                startActivity(nameIntent);
+                String name = editText.getText().toString();
+                Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
+                homePageIntent.putExtra("name", name);
+                startActivity(homePageIntent);
+
             }
         });
     }
 }
+

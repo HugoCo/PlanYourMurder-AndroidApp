@@ -1,5 +1,6 @@
 package com.example.planyourmurder.ui.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -17,21 +18,27 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class HomePage extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        Intent intent = getIntent();
+        if (intent.hasExtra("name")){ // vérifie qu'une valeur est associée à la clé “name”
+            name = intent.getStringExtra("name"); // on récupère la valeur associée à la clé
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "mdr t'as cru ça faisait quelque chose", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -46,6 +53,10 @@ public class HomePage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     @Override
