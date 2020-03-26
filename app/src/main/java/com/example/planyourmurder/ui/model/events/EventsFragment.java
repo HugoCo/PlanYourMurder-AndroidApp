@@ -1,4 +1,4 @@
-package com.example.planyourmurder.ui.home;
+package com.example.planyourmurder.ui.model.events;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.planyourmurder.R;
 
-public class HomeFragment extends Fragment {
-
-    private HomeViewModel homeViewModel;
+public class EventsFragment extends Fragment {
+    private EventsViewModel eventsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        eventsViewModel =
+                ViewModelProviders.of(this).get(EventsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_events, container, false);
+        final TextView textView = root.findViewById(R.id.text_events);
+        eventsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomePage"
+            android:name=".ui.controller.HomePage"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

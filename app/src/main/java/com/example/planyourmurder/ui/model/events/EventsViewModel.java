@@ -1,4 +1,4 @@
-package com.example.planyourmurder.ui.events;
+package com.example.planyourmurder.ui.model.events;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

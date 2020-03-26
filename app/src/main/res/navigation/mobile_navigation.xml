@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.planyourmurder.ui.home.HomeFragment"
+        android:name="com.example.planyourmurder.ui.model.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
-        android:name="com.example.planyourmurder.ui.home.HomeSecondFragment"
+        android:name="com.example.planyourmurder.ui.model.home.HomeSecondFragment"
         android:label="@string/home_second"
         tools:layout="@layout/fragment_home_second">
         <action
@@ -31,19 +31,19 @@
 
     <fragment
         android:id="@+id/nav_me"
-        android:name="com.example.planyourmurder.ui.gallery.GalleryFragment"
+        android:name="com.example.planyourmurder.ui.model.mycharacter.MyCharacterFragment"
         android:label="@string/menu_me"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_mission"
-        android:name="com.example.planyourmurder.ui.slideshow.SlideshowFragment"
+        android:name="com.example.planyourmurder.ui.model.missions.MissionsFragment"
         android:label="@string/menu_mission"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_events"
-        android:name="com.example.planyourmurder.ui.events.EventsFragment"
+        android:name="com.example.planyourmurder.ui.model.events.EventsFragment"
         android:label="@string/menu_events"
         tools:layout="@layout/fragment_events" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.planyourmurder;
+package com.example.planyourmurder.ui.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,20 +9,22 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
-import static com.example.planyourmurder.R.id.activity_main_button_confirm;
+import com.example.planyourmurder.R;
+import com.example.planyourmurder.ui.model.Game;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button button_confirm;
     private EditText editText;
+    private Game mGame;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mGame = new Game();
         this.button_confirm= findViewById(R.id.activity_main_button_confirm);
         this.editText=findViewById(R.id.activity_main_editText);
 
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int gameNumber = Integer.parseInt(editText.getText().toString());
+                System.out.println(gameNumber);
+                mGame.setGameNumber(gameNumber);
                 Intent homePageIntent = new Intent(MainActivity.this, HomePage.class);
                 startActivity(homePageIntent);
             }
