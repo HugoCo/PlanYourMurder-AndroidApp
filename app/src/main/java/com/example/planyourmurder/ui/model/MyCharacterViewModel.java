@@ -1,15 +1,15 @@
-package com.example.planyourmurder.ui.model.events;
+package com.example.planyourmurder.ui.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class EventsViewModel extends ViewModel {
+public class MyCharacterViewModel extends ViewModel {
+
     private MutableLiveData<String> mText;
 
-    public EventsViewModel() {
+    public MyCharacterViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is event fragment");
     }
 
     public LiveData<String> getText() {

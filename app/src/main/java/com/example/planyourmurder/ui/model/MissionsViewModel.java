@@ -1,4 +1,4 @@
-package com.example.planyourmurder.ui.model.missions;
+package com.example.planyourmurder.ui.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,6 @@ public class MissionsViewModel extends ViewModel {
 
     public MissionsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
     }
 
     public LiveData<String> getText() {
