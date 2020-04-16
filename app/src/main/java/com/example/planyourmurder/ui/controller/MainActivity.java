@@ -1,43 +1,33 @@
 package com.example.planyourmurder.ui.controller;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
+
 import com.example.planyourmurder.R;
-import com.example.planyourmurder.ui.model.SocketInstance;
 import com.example.planyourmurder.ui.model.Game;
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.Ack;
-import com.github.nkzawa.socketio.client.Manager;
-import com.github.nkzawa.socketio.client.Socket;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
 
 import static java.lang.Integer.parseInt;
 
@@ -48,35 +38,60 @@ public class MainActivity extends AppCompatActivity{
     private EditText editText;
     private TextView textView3;
     private Game mGame;
-    private Socket mSocket;
-    private int result;
-    /*{
-        try{
-            mSocket = IO.socket("http://localhost:1337/");
-        } catch (URISyntaxException e){}
-    }*/
-    /*private Emitter.Listener onNewMessage = new Emitter.Listener() {
+    private OkHttpClient client;
+    private int isCorrectId = 0;
+    private int gameNumber = 0;
+    private boolean ready = false;
+
+    private final class EchoWebSocketListener extends WebSocketListener {
+        public static final int NORMAL_CLOSURE_STATUS = 1000;
+
         @Override
-        public void call(final Object... args) {
-            System.out.println("Call");
-            MainActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    System.out.println("ReceptionOK");
 
-                    try {
-                        result = parseInt(data.getString("isCorrectID"));
-                        System.out.println("OK Received");
-;
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+        public void onOpen(WebSocket webSocket, Response response){
+            System.out.println(response.toString());
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("type", "testId");
+                obj.put("id", gameNumber);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            webSocket.send(obj.toString());
+            System.out.println("Sent to server : "+obj.toString());
+            //webSocket.close(NORMAL_CLOSURE_STATUS, "Bye");
         }
-    };*/
 
+        @Override
+        public void onMessage(WebSocket webSocket, String text) {
+            output("Receiving : " + text );
+            try {
+                JSONObject connectJson = new JSONObject(text);
+                isCorrectId = (int) connectJson.get("result");
+                continueToName();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        public void onClosing(WebSocket webSocket, int code, String reason) {
+            webSocket.close(NORMAL_CLOSURE_STATUS, null);
+            output("Closing : " + code + "/" + reason);
+        }
+
+        public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+            output("Error : "+ t.getMessage());
+        }
+    }
+
+    private void continueToName() {
+        if(isCorrectId == 1) {
+            Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
+            startActivity(nameIntent);
+        }
+    }
 
 
     @Override
@@ -84,23 +99,13 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mGame = new Game();
-        SocketInstance instance = (SocketInstance) getApplication();
-        mSocket = instance.getSocketInstance();
-        //mSocket.connect();
-        //System.out.println("CONNECT :"+mSocket.connect());
-        System.out.println("CONNECT :"+mSocket.connected());
-        if (mSocket.connected()){
-            Log.d(TAG, "onCreate: ");
-            Toast.makeText(MainActivity.this, "Socket Connected!!",Toast.LENGTH_SHORT).show();
-        }
-        java.util.logging.Logger.getLogger(Socket.class.getName()).setLevel(Level.FINEST);
-        //java.util.logging.Logger.getLogger(io.socket.engineio.client.Socket.class.getName()).setLevel(Level.FINEST);
-        java.util.logging.Logger.getLogger(Manager.class.getName()).setLevel(Level.FINEST);
+
 
         this.button_confirm= findViewById(R.id.activity_main_button_confirm);
         this.editText=findViewById(R.id.activity_main_editText);
         this.textView3=findViewById(R.id.textView3);
-        textView3.setText("Socket connected : "+mSocket.connected());
+
+        client = new OkHttpClient();
 
         button_confirm.setEnabled(false);
         editText.addTextChangedListener(new TextWatcher() {
@@ -111,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                button_confirm.setEnabled(s.toString().length() == 3);
+                button_confirm.setEnabled(s.toString().length() == 6);
             }
 
             @Override
@@ -122,45 +127,36 @@ public class MainActivity extends AppCompatActivity{
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int gameNumber = parseInt(editText.getText().toString());
-                //System.out.println(gameNumber);
-                attemptSend();
+
+                gameNumber = parseInt(editText.getText().toString());
                 mGame.setGameNumber(gameNumber);
+                start();
 
-                //if (result == 1) {
-                    Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
-                    startActivity(nameIntent);
-                //}
-            }
-        });
-
-    }
-    private void attemptSend(){
-        mSocket.on("testId", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Ack ack = (Ack) args[args.length-1];
-                ack.call();
-            }
-        });
-        String message = editText.getText().toString().trim();
-        if(TextUtils.isEmpty(message)) {
-            return;
-        }
-        System.out.println("OK "+message);
-        mSocket.emit("testId", message, new Ack(){
-            @Override
-            public void call(Object... args) {
-                Log.d(TAG, "call: OK");
             }
         });
 
     }
 
+    private void start() {
+        Request request = new Request.Builder().url("ws://rpplanner-api.herokuapp.com/").build();
+        EchoWebSocketListener listener = new EchoWebSocketListener();
+        WebSocket ws = client.newWebSocket(request, listener);
+        //client.dispatcher().executorService().shutdown();
+
+
+    }
+
+    private void output(final String txt){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textView3.setText(textView3.getText().toString() + "\n\n" + txt);
+            }
+        });
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mSocket.disconnect();
-        //mSocket.off("testId", onNewMessage);
     }
+
 }
