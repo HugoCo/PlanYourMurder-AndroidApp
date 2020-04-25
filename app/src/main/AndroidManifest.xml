@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.controller.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity android:name=".ui.controller.NameActivity" />
         <activity
             android:name=".ui.controller.HomePageActivity"
@@ -28,8 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".ui.controller.WebSocketClient" />
     </application>
 
 </manifest>
