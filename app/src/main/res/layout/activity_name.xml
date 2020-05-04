@@ -41,6 +41,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
@@ -51,6 +52,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_name_button_confirm" />
+=======
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+>>>>>>> parent of 42e8800... Added a ListView taking data from API to show it on NameActivity
 =======
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 >>>>>>> parent of 42e8800... Added a ListView taking data from API to show it on NameActivity
