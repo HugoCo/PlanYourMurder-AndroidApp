@@ -104,6 +104,7 @@ public class NameActivity extends AppCompatActivity {
             View titleView = view.findViewById(R.id.namechar);
             String title = (String) titleView.getTag();
             Toast.makeText(getApplicationContext(), title, Toast.LENGTH_SHORT).show();
+            
         }
     };
 }
