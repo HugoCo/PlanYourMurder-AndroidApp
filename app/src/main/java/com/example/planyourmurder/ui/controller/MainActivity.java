@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity{
         @Override
 
         public void onOpen(WebSocket webSocket, Response response){
-            SocketHandler.setSocket(webSocket);
             System.out.println(response.toString());
             JSONObject obj = new JSONObject();
             try {
@@ -116,6 +115,7 @@ public class MainActivity extends AppCompatActivity{
         imageView5.setImageBitmap(decodedByte);
 
         final Socket socket = Socket.Builder.with(WEBSOCKET_BASE_URL).build().connect();
+        SocketHandler.setSocket(socket);
 
         Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
             @Override
