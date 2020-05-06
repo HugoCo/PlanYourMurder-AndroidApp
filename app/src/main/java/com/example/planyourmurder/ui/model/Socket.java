@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.ProtocolException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -180,7 +181,9 @@ public class Socket {
     public boolean send(@NonNull String event, @NonNull String data){
         try {
             JSONObject text = new JSONObject();
-            text.put("event", event);
+            text.put("type", event);
+            text.put("emitter", "Appli");
+            text.put("date", Calendar.getInstance().getTime());
             text.put("data", new JSONObject(data));
             Log.v(TAG,"Try to send data "+text.toString());
             return realWebSocket.send(text.toString());
@@ -364,7 +367,7 @@ public class Socket {
                 // Parse message text
                 JSONObject response = new JSONObject(text);
                 String type = response.getString("type");
-                JSONObject data = response.getJSONObject("result");
+                JSONObject data = response.getJSONObject("data");
 
                 // call event listener with received data
                 if (eventResponseListener.get(type) != null) {
