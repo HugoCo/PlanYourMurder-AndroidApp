@@ -15,6 +15,7 @@
     <string name="menu_mission">Mes actions</string>
     <string name="menu_events">Evenements</string>
     <string name="menu_my_inventory">Mon Inventaire</string>
+    <string name="menu_the_characters">Les Personnages</string>
     <string name="home_second">Home Second</string>
     <string name="enter_name">Entrez votre nom</string>
     <string name="my_name">MonNom</string>
