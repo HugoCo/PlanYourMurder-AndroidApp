@@ -22,21 +22,21 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.planyourmurder.R;
-import com.example.planyourmurder.ui.model.MissionsViewModel;
+import com.example.planyourmurder.ui.model.MyActionsViewModel;
 
 import java.util.ArrayList;
 
-public class MissionsFragment extends Fragment {
+public class MyActionsFragment extends Fragment {
 
-    public static final String TAG = "MissionsFragment";
+    public static final String TAG = "MyActionsFragment";
 
-    private MissionsViewModel missionsViewModel;
+    private MyActionsViewModel missionsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         missionsViewModel =
-                ViewModelProviders.of(this).get(MissionsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_missions, container, false);
+                ViewModelProviders.of(this).get(MyActionsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_myactions, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
         missionsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

@@ -36,10 +36,16 @@
         tools:layout="@layout/fragment_mycharacter" />
 
     <fragment
-        android:id="@+id/nav_mission"
-        android:name="com.example.planyourmurder.ui.controller.MissionsFragment"
+        android:id="@+id/nav_myactions"
+        android:name="com.example.planyourmurder.ui.controller.MyActionsFragment"
         android:label="@string/menu_mission"
-        tools:layout="@layout/fragment_missions" />
+        tools:layout="@layout/fragment_myactions" />
+
+    <fragment
+        android:id="@+id/nav_my_inventory"
+        android:name="com.example.planyourmurder.ui.controller.MyInventoryFragment"
+        android:label="@string/menu_my_inventory"
+        tools:layout="@layout/fragment_my_inventory" />
 
     <fragment
         android:id="@+id/nav_events"

@@ -13,9 +13,13 @@
             android:icon="@drawable/ic_face_black_24dp"
             android:title="@string/menu_me" />
         <item
-            android:id="@+id/nav_mission"
+            android:id="@+id/nav_myactions"
             android:icon="@drawable/ic_assignment_black_24dp"
             android:title="@string/menu_mission" />
+        <item
+            android:id="@+id/nav_my_inventory"
+            android:icon="@drawable/ic_work_black_24dp"
+            android:title="@string/menu_my_inventory" />
         <item
             android:id="@+id/nav_events"
             android:icon="@drawable/ic_today_black_24dp"

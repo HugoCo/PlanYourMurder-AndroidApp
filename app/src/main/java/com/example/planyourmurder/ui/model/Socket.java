@@ -182,9 +182,10 @@ public class Socket {
         try {
             JSONObject text = new JSONObject();
             text.put("type", event);
-            text.put("emitter", "Appli");
-            text.put("date", Calendar.getInstance().getTime());
+            //text.put("emitter", "Appli");
+            //text.put("date", Calendar.getInstance().getTime());
             text.put("data", new JSONObject(data));
+            text.put("status", "ok");
             Log.v(TAG,"Try to send data "+text.toString());
             return realWebSocket.send(text.toString());
         } catch (JSONException e) {

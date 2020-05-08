@@ -12,8 +12,9 @@
 
     <string name="menu_home">Accueil</string>
     <string name="menu_me">Mon personnage</string>
-    <string name="menu_mission">Missions</string>
+    <string name="menu_mission">Mes actions</string>
     <string name="menu_events">Evenements</string>
+    <string name="menu_my_inventory">Mon Inventaire</string>
     <string name="home_second">Home Second</string>
     <string name="enter_name">Entrez votre nom</string>
     <string name="my_name">MonNom</string>
@@ -42,4 +43,7 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

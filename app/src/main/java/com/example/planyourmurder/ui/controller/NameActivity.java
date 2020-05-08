@@ -51,7 +51,7 @@ public class NameActivity extends AppCompatActivity {
         this.editText=findViewById(R.id.activity_name_editText);
         socket = SocketHandler.getSocket();
         this.listView = findViewById(R.id.listView);
-        this.listView.setVisibility(View.GONE);
+        //this.listView.setVisibility(View.GONE);
         Intent intent = getIntent();
         if (intent.hasExtra("roles")){ // vérifie qu'une valeur est associée à la clé “roles”
             roles = intent.getStringExtra("roles"); // on récupère la valeur associée à la clé
@@ -97,13 +97,13 @@ public class NameActivity extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject obj = new JSONObject();
+                /*JSONObject obj = new JSONObject();
                 try {
                     obj.put("id", 101938);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
-                socket.send("testId", obj.toString());
+                }*/
+                //socket.send("testId", obj.toString());
                 String name = editText.getText().toString();
                 Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
                 homePageIntent.putExtra("name", name);
