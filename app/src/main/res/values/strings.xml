@@ -18,6 +18,7 @@
     <string name="menu_the_characters">Les Personnages</string>
     <string name="home_second">Home Second</string>
     <string name="enter_name">Entrez votre nom</string>
+    <string name="enter_password">Entrez votre mot de passe</string>
     <string name="my_name">MonNom</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
