@@ -8,9 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.planyourmurder.R;
+<<<<<<< Updated upstream
 import com.example.planyourmurder.ui.model.Game;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
+=======
+import com.example.planyourmurder.ui.model.Socket;
+import com.example.planyourmurder.ui.model.SocketHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static java.lang.Integer.parseInt;
+>>>>>>> Stashed changes
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,8 +36,13 @@ public class NameActivity<socket> extends AppCompatActivity {
     private EditText edit_name;
     private EditText edit_password;
     public static final int HOME_PAGE_ACTIVITY_REQUEST_CODE = 42;
+<<<<<<< Updated upstream
     private Socket socket = SocketHandler.getSocket();
     private String token;
+=======
+    private Socket socket;
+    private String name;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +52,9 @@ public class NameActivity<socket> extends AppCompatActivity {
         this.edit_name=findViewById(R.id.activity_name_editText);
         this.edit_password=findViewById(R.id.activity_password_editText);
 
+        socket = SocketHandler.getSocket();
+        Intent intent = getIntent();
+        final int gameId = parseInt(intent.getStringExtra("gameId"));
 
         button_confirm.setEnabled(false);
 
@@ -56,11 +74,32 @@ public class NameActivity<socket> extends AppCompatActivity {
 
             }
         });
+
+        Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    JSONObject loginJson = new  JSONObject(data);
+                    System.out.println(status);
+                    if (status.equals("error"))
+                    {
+                        Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
+                        homePageIntent.putExtra("name", name);
+                        startActivity(homePageIntent);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("connectGame", socketPairListener);
+
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = edit_name.getText().toString();
+                name = edit_name.getText().toString();
                 String password = edit_password.getText().toString();
+<<<<<<< Updated upstream
 
                 // envoie de la socket
                 JSONObject obj = new JSONObject();
@@ -68,11 +107,19 @@ public class NameActivity<socket> extends AppCompatActivity {
                     obj.put("username", name);
                     obj.put("password", password);
                     obj.put("gameId",Num_game);
+=======
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("gameId", 318534);
+                    obj.put("username", name);
+                    obj.put("password", password);
+>>>>>>> Stashed changes
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 socket.send("connectGame", obj.toString());
 
+<<<<<<< Updated upstream
                 // réponse base de donnée 2 possibilités : soit vers home page soit vers select personnage
 
                 Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
@@ -95,6 +142,8 @@ public class NameActivity<socket> extends AppCompatActivity {
                 Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
                 homePageIntent.putExtra("name", name);
                 startActivity(homePageIntent);
+=======
+>>>>>>> Stashed changes
 
             }
         });

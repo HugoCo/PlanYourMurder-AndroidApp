@@ -123,7 +123,26 @@ public class MainActivity extends AppCompatActivity{
         this.imageView5=findViewById(R.id.imageView5);
         imageView5.setImageBitmap(decodedByte);
 
+<<<<<<< Updated upstream
         client = new OkHttpClient();
+=======
+        final Socket socket = Socket.Builder.with(WEBSOCKET_BASE_URL).build().connect();
+        SocketHandler.setSocket(socket);
+
+        Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    connectJson = new  JSONObject(data);
+                    isCorrectId = Integer.parseInt(connectJson.getString("result"));
+                    continueToName();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("isCorrectId", socketPairListener);
+>>>>>>> Stashed changes
 
         button_confirm.setEnabled(false);
         editText.addTextChangedListener(new TextWatcher() {
@@ -154,6 +173,25 @@ public class MainActivity extends AppCompatActivity{
         });
 
     }
+<<<<<<< Updated upstream
+=======
+    private void continueToName() throws JSONException {
+        if(isCorrectId == 1) {
+            JSONArray roles = (JSONArray) connectJson.get("roles");
+            String listRolesString = connectJson.toString();
+            Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
+            nameIntent.putExtra("roles", listRolesString);
+            nameIntent.putExtra("gameId", ""+gameNumber);
+            startActivity(nameIntent);
+        }
+        else{
+            System.out.println("MAUVAIS RESULT RECU");
+            //JSONArray roles = (JSONArray) connectJson.get("roles");
+            //String listRolesString = connectJson.toString();
+            Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
+            //nameIntent.putExtra("roles", listRolesString);
+            startActivity(nameIntent);
+>>>>>>> Stashed changes
 
     private void start() {
         Request request = new Request.Builder().url("ws://rpplanner-api.herokuapp.com/").build();
