@@ -177,12 +177,6 @@ public class MainActivity extends AppCompatActivity{
         }
         else{
             System.out.println("MAUVAIS RESULT RECU");
-            //JSONArray roles = (JSONArray) connectJson.get("roles");
-            //String listRolesString = connectJson.toString();
-            Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
-            //nameIntent.putExtra("roles", listRolesString);
-            startActivity(nameIntent);
-
         }
     }
 

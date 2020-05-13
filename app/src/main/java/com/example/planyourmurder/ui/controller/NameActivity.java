@@ -12,6 +12,7 @@ import com.example.planyourmurder.R;
 import com.example.planyourmurder.ui.model.Game;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
+import com.example.planyourmurder.ui.model.TokenHandler;
 
 
 import org.json.JSONException;
@@ -70,9 +71,12 @@ public class NameActivity<socket> extends AppCompatActivity {
             public void onMessage(String event, String status, String data) {
                 try {
                     JSONObject loginJson = new  JSONObject(data);
+
                     System.out.println(status);
                     if (status.equals("error"))
                     {
+                        token = loginJson.getString("token");
+                        TokenHandler.setToken(token);
                         Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
                         homePageIntent.putExtra("name", name);
                         startActivity(homePageIntent);

@@ -186,6 +186,7 @@ public class Socket {
             //text.put("date", Calendar.getInstance().getTime());
             text.put("data", new JSONObject(data));
             text.put("status", "ok");
+            text.put("token", TokenHandler.getToken());
             Log.v(TAG,"Try to send data "+text.toString());
             return realWebSocket.send(text.toString());
         } catch (JSONException e) {
