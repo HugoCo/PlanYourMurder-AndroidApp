@@ -17,6 +17,7 @@
             android:name=".ui.controller.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".ui.controller.NameActivity" />
+        <activity android:name=".ui.controller.RoleActivity" />
         <activity
             android:name=".ui.controller.HomePageActivity"
             android:label="@string/title_activity_home_page"

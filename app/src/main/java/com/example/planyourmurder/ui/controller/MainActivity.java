@@ -121,15 +121,16 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onMessage(String event, String status, String data) {
                 try {
-                    connectJson = new  JSONObject(data);
-                    isCorrectId = Integer.parseInt(connectJson.getString("result"));
-                    continueToName();
+                    if (status.equals("ok")) {
+                        System.out.println("go to name");
+                        continueToName();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         };
-        socket.onEventResponse("isCorrectId", socketPairListener);
+        socket.onEventResponse("testId", socketPairListener);
 
         button_confirm.setEnabled(false);
         editText.addTextChangedListener(new TextWatcher() {
@@ -167,17 +168,9 @@ public class MainActivity extends AppCompatActivity{
 
     }
     private void continueToName() throws JSONException {
-        if(isCorrectId == 1) {
-            JSONArray roles = (JSONArray) connectJson.get("roles");
-            String listRolesString = connectJson.toString();
-            Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
-            nameIntent.putExtra("roles", listRolesString);
-            nameIntent.putExtra("gameId", ""+gameNumber);
-            startActivity(nameIntent);
-        }
-        else{
-            System.out.println("MAUVAIS RESULT RECU");
-        }
+        Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
+        nameIntent.putExtra("gameId", ""+gameNumber);
+        startActivity(nameIntent);
     }
 
 

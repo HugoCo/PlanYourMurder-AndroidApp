@@ -34,6 +34,7 @@ public class NameActivity<socket> extends AppCompatActivity {
     private String token;
     private Socket socket;
     private String name;
+    private String roles;
     private int gameId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,10 @@ public class NameActivity<socket> extends AppCompatActivity {
                     {
                         token = loginJson.getString("token");
                         TokenHandler.setToken(token);
-                        Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
-                        homePageIntent.putExtra("name", name);
-                        startActivity(homePageIntent);
+                        roles = loginJson.getString("roles");
+                        Intent roleIntent = new Intent(NameActivity.this, RoleActivity.class);
+                        roleIntent.putExtra("roles",roles);
+                        startActivity(roleIntent);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -95,7 +97,7 @@ public class NameActivity<socket> extends AppCompatActivity {
                 String password = edit_password.getText().toString();
                 JSONObject obj = new JSONObject();
                 try {
-                    obj.put("gameId", ""+854875);
+                    obj.put("gameId", ""+gameId);
                     obj.put("username", name);
                     obj.put("password", password);
                 } catch (JSONException e) {
