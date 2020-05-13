@@ -73,7 +73,7 @@ public class NameActivity<socket> extends AppCompatActivity {
                     JSONObject loginJson = new  JSONObject(data);
 
                     System.out.println(status);
-                    if (status.equals("error"))
+                    if (status.equals("ok"))
                     {
                         token = loginJson.getString("token");
                         TokenHandler.setToken(token);
@@ -95,17 +95,13 @@ public class NameActivity<socket> extends AppCompatActivity {
                 String password = edit_password.getText().toString();
                 JSONObject obj = new JSONObject();
                 try {
-                    obj.put("gameId", 318534);
+                    obj.put("gameId", ""+854875);
                     obj.put("username", name);
                     obj.put("password", password);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 socket.send("connectGame", obj.toString());
-
-                Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
-                homePageIntent.putExtra("name", name);
-                startActivity(homePageIntent);
             }
         });
     }
