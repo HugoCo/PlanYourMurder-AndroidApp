@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity{
 
         Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
             @Override
-            public void onMessage(String event, String data) {
+            public void onMessage(String event, String status, String data) {
                 try {
                     connectJson = new  JSONObject(data);
                     isCorrectId = Integer.parseInt(connectJson.getString("result"));
@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity{
             String listRolesString = connectJson.toString();
             Intent nameIntent = new Intent(MainActivity.this, NameActivity.class);
             nameIntent.putExtra("roles", listRolesString);
+            nameIntent.putExtra("gameId", ""+gameNumber);
             startActivity(nameIntent);
         }
         else{

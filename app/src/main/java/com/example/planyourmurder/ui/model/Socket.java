@@ -265,11 +265,11 @@ public class Socket {
      * @param event event name that you want sent message to
      * @param data message data in JSON format
      */
-    public void sendOnOpen(@NonNull String event, @NonNull String data) {
+    public void sendOnOpen(@NonNull String event, @NonNull String status, @NonNull String data) {
         if (state != State.OPEN)
-            onOpenMessageQueue.put(event,data);
+            onOpenMessageQueue.put(event, data);
         else
-            send(event,data);
+            send(event, data);
     }
 
     /**
@@ -362,17 +362,18 @@ public class Socket {
 
             // call message listener
             if (messageListener != null)
-                messageListener.onMessage(Socket.this, text);
+                messageListener.onMessage(Socket.this,  text);
 
             try {
                 // Parse message text
                 JSONObject response = new JSONObject(text);
                 String type = response.getString("type");
+                String status = response.getString("status");
                 JSONObject data = response.getJSONObject("data");
 
                 // call event listener with received data
                 if (eventResponseListener.get(type) != null) {
-                    eventResponseListener.get(type).onMessage(Socket.this, type, data);
+                    eventResponseListener.get(type).onMessage(Socket.this, type, status, data);
                 }
                 // call event listener
                 if (eventListener.get(type) != null) {
@@ -463,7 +464,7 @@ public class Socket {
         /**
          * Method need to override in listener usage
          */
-        public abstract void onMessage (String event, String data);
+        public abstract void onMessage (String event, String status, String data);
 
         /**
          * Just override the inherited method
@@ -473,17 +474,17 @@ public class Socket {
 
         /**
          * Method called from socket to execute listener implemented in
-         * {@link #onMessage(String, String)} on main thread
+         * {@link #onMessage(String, String, String)} on main thread
          *
          * @param socket Socket that receive the message
          * @param event Message received event
          * @param data Data received in the message
          */
-        private void onMessage (Socket socket, final String event, final JSONObject data) {
+        private void onMessage (Socket socket, final String event, final String status, final JSONObject data) {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    onMessage(event, data.toString());
+                    onMessage(event, status, data.toString());
                     onMessage(event);
                 }
             });
