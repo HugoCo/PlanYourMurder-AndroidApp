@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.example.planyourmurder.R;
+import com.example.planyourmurder.ui.model.Player;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -22,16 +24,12 @@ import androidx.appcompat.widget.Toolbar;
 public class HomePageActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private String name;
+    private TextView text_username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        Intent intent = getIntent();
-        if (intent.hasExtra("name")){ // vérifie qu'une valeur est associée à la clé “name”
-            name = intent.getStringExtra("name"); // on récupère la valeur associée à la clé
-        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,11 +52,15 @@ public class HomePageActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        Player player=new Player();
+        String name= player.getName();
+        this.text_username=findViewById(R.id.texteNom);
+        text_username.setText(name);
     }
 
-    public String getName(){
-        return this.name;
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

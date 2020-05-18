@@ -34,9 +34,6 @@ public class MyCharacterFragment extends Fragment {
             }
         });
         HomePageActivity activity = (HomePageActivity) getActivity();
-        String username=activity.getName();
-        this.text_username=root.findViewById(R.id.textView2);
-        text_username.setText(username);
         return root;
     }
 }
