@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.example.planyourmurder.R;
 
 import com.example.planyourmurder.ui.model.Game;
+import com.example.planyourmurder.ui.model.Player;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
 import com.example.planyourmurder.ui.model.TokenHandler;
@@ -94,6 +95,7 @@ public class NameActivity<socket> extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 name = edit_name.getText().toString();
+                Player.setName(name);
                 String password = edit_password.getText().toString();
                 JSONObject obj = new JSONObject();
                 try {

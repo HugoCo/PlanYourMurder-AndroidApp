@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.planyourmurder.R;
 import com.example.planyourmurder.ui.model.Game;
+import com.example.planyourmurder.ui.model.Player;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
 import com.google.gson.Gson;
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 gameNumber = parseInt(editText.getText().toString());
-                mGame.setGameNumber(gameNumber);
+                Player.setGameId(gameNumber);
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put("id", gameNumber);
