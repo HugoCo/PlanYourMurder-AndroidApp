@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity{
 
         this.button_confirm= findViewById(R.id.activity_main_button_confirm);
         this.editText=findViewById(R.id.activity_main_editText);
-        this.textView3=findViewById(R.id.textView3);
         this.imageView5=findViewById(R.id.imageView5);
         imageView5.setImageBitmap(decodedByte);
 
