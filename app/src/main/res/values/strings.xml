@@ -50,4 +50,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="perso">Personnage</string>
+    <string name="announce_summary_role">Résumé du rôle</string>
+    <string name="announce_the_hints">Les indices récupérés</string>
+    <string name="announce_scenario_title">Nom du scénario</string>
+    <string name="announce_scenario_summary">Résumé du scénario</string>
+    <string name="summary_role">Impossible de récupérer le résumé du rôle</string>
+    <string name="the_hints">Impossible de récupérer les indices</string>
+    <string name="scenario_title">Impossible de récupérer le nom du scénario</string>
+    <string name="scenario_summary">Impossible de récupérer le résumé du scénario</string>
+
 </resources>

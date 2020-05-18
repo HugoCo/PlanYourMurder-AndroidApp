@@ -1,6 +1,9 @@
 package com.example.planyourmurder.ui.controller;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +17,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.planyourmurder.R;
 import com.example.planyourmurder.ui.model.MyCharacterViewModel;
+import com.example.planyourmurder.ui.model.Socket;
+import com.example.planyourmurder.ui.model.SocketHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MyCharacterFragment extends Fragment {
 
     private MyCharacterViewModel myCharacterViewModel;
 
     private TextView text_username;
+    private Socket socket;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +46,36 @@ public class MyCharacterFragment extends Fragment {
         String username=activity.getName();
         this.text_username=root.findViewById(R.id.textView2);
         text_username.setText(username);
+        socket = SocketHandler.getSocket();
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("status","ok");
+            socket.send("getMyPlayer",obj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    System.out.println(data);
+                    JSONObject homePageJson = new  JSONObject(data);
+
+                    if (status.equals("ok"))
+                    {
+                        if(homePageJson.getString("name")!="null"){
+                            text_username.setText(homePageJson.getString("characterName"));
+                        }
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("getMyPlayer", socketPairListener);
         return root;
     }
 }
