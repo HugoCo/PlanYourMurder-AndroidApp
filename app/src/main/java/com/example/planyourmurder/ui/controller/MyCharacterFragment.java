@@ -58,12 +58,13 @@ public class MyCharacterFragment extends Fragment {
             public void onMessage(String event, String status, String data) {
                 try {
                     System.out.println(data);
-                    JSONObject homePageJson = new  JSONObject(data);
+                    JSONObject MyPlayerPageJson = new  JSONObject(data);
+                    JSONObject characterRole = (JSONObject) MyPlayerPageJson.get("characterRole");
 
                     if (status.equals("ok"))
                     {
-                        if(homePageJson.getString("name")!="null"){
-                            text_username.setText(homePageJson.getString("characterName"));
+                        if(characterRole.getString("name")!="null"){
+                            text_username.setText(characterRole.getString("name"));
                         }
 
 
