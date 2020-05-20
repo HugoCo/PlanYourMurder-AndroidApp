@@ -6,26 +6,109 @@
     android:layout_height="match_parent"
     tools:context=".ui.controller.MyCharacterFragment">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="139dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/ic_face_black_24dp"
+    <ScrollView
+        android:layout_width="413dp"
+        android:layout_height="733dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="283dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/my_name"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/home_photo"
+                android:layout_width="160dp"
+                android:layout_height="148dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:baselineAligned="false"
+                android:src="@drawable/ic_face_black_24dp"
+                android:translationX="100dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.73"
+                app:layout_constraintStart_toEndOf="@+id/text_mycharacter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/annonce_role_nom"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:fontFamily="@font/amarante"
+                android:lineSpacingExtra="30sp"
+                android:text="Mon rôle:"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:translationX="10dp"
+                android:translationY="0dp"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <TextView
+                android:id="@+id/role_name"
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:textColor="#711F19"
+                android:textSize="36sp"
+                android:text="pas d'informations"
+                android:translationX="10dp" />
+
+            <TextView
+                android:id="@+id/annonce_role_summary"
+                android:layout_width="195dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amarante"
+                android:lineSpacingExtra="30sp"
+                android:text="Résumé du rôle:"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:translationX="10dp"
+                android:translationY="0dp"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="265dp" />
+
+            <TextView
+                android:id="@+id/role_summary"
+                android:layout_width="match_parent"
+                android:layout_height="142dp"
+                android:text="pas d'informations"
+                android:textSize="20sp"
+                android:translationX="10dp" />
+
+            <TextView
+                android:id="@+id/annonce_role_description"
+                android:layout_width="304dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amarante"
+                android:lineSpacingExtra="30sp"
+                android:text="Description du rôle:"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:translationX="10dp"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="398dp" />
+
+            <TextView
+                android:id="@+id/role_description"
+                android:layout_width="match_parent"
+                android:layout_height="143dp"
+                android:textSize="20sp"
+                android:text="pas d'informations"
+                android:translationX="10dp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,11 @@ public class MyCharacterFragment extends Fragment {
 
     private MyCharacterViewModel myCharacterViewModel;
 
-    private TextView text_username;
+    private TextView role_name;
+    private TextView role_summary;
+    private TextView role_description;
+
+
     private Socket socket;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,15 +39,23 @@ public class MyCharacterFragment extends Fragment {
         myCharacterViewModel =
                 ViewModelProviders.of(this).get(MyCharacterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mycharacter, container, false);
-        final TextView textView = root.findViewById(R.id.textView2);
+        final TextView role_name = root.findViewById(R.id.role_name);
+        final TextView role_summary = root.findViewById(R.id.role_summary);
+        final TextView role_description = root.findViewById(R.id.role_description);
+
         myCharacterViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                role_name.setText(s);
+
+
             }
         });
         HomePageActivity activity = (HomePageActivity) getActivity();
-        this.text_username=root.findViewById(R.id.textView2);
+        this.role_name=root.findViewById(R.id.role_name);
+        this.role_summary=root.findViewById(R.id.role_summary);
+        this.role_description=root.findViewById(R.id.role_description);
+
         socket = SocketHandler.getSocket();
         try {
             JSONObject obj = new JSONObject();
@@ -64,8 +76,17 @@ public class MyCharacterFragment extends Fragment {
                     if (status.equals("ok"))
                     {
                         if(characterRole.getString("name")!="null"){
-                            text_username.setText(characterRole.getString("name"));
+                            role_name.setText(characterRole.getString("name"));
                         }
+
+                        if(characterRole.getString("summary")!="null"){
+                            role_summary.setText(characterRole.getString("summary"));
+                        }
+
+                        if(characterRole.getString("description")!="null"){
+                            role_description.setText(characterRole.getString("description"));
+                        }
+
 
 
                     }
