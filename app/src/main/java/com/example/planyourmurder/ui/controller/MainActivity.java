@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.planyourmurder.R;
@@ -124,6 +125,10 @@ public class MainActivity extends AppCompatActivity{
                     if (status.equals("ok")) {
                         System.out.println("go to name");
                         continueToName();
+                    }
+                    else{
+                        String message =" Code de partie Incorrect";
+                        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
