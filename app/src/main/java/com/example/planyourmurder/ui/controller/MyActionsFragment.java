@@ -1,9 +1,12 @@
 
 package com.example.planyourmurder.ui.controller;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,14 +26,24 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.planyourmurder.R;
 import com.example.planyourmurder.ui.model.MyActionsViewModel;
+import com.example.planyourmurder.ui.model.Socket;
+import com.example.planyourmurder.ui.model.SocketHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MyActionsFragment extends Fragment {
 
     public static final String TAG = "MyActionsFragment";
 
     private MyActionsViewModel missionsViewModel;
+    private Socket socket;
+    private SwipeMenuListView listView;
+    private JSONArray listActionsDetails;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,29 +57,46 @@ public class MyActionsFragment extends Fragment {
                 textView.setText(s);
             }
         });
-        SwipeMenuListView listView = root.findViewById(R.id.listView);
-        ArrayList<String> mission_list = new ArrayList<>();
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
-        mission_list.add("Tuer le méchant");
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mission_list);
-        listView.setAdapter(adapter);
+        socket = SocketHandler.getSocket();
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("status","ok");
+            socket.send("getMyActions",obj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        listView = root.findViewById(R.id.listView);
+
+        Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    JSONObject homePageJson = new  JSONObject(data);
+                    JSONObject characterActions = (JSONObject) homePageJson.get("characterActions");
+                    ArrayList<String> mission_list = new ArrayList<>();
+                    ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mission_list);
+                    listView.setAdapter(adapter);
+
+                    listActionsDetails = new JSONArray();
+
+                    if (status.equals("ok"))
+                    {
+                        for (Iterator key = characterActions.keys(); key.hasNext();) {
+                            mission_list.add((String) key.next());
+                            JSONObject name = (JSONObject) characterActions.get((String) key.next());
+                            listActionsDetails.put(name);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("getMyActions", socketPairListener);
+
+
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 

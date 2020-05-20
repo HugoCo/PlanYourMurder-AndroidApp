@@ -22,6 +22,18 @@
 
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="412dp"
+        android:layout_height="653dp"
+        tools:layout_editor_absoluteY="79dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Choisissez une action à effectuer"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
