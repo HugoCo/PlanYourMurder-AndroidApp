@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.example.planyourmurder.R;
 
-import com.example.planyourmurder.ui.model.Game;
 import com.example.planyourmurder.ui.model.Player;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
@@ -20,9 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static java.lang.Integer.parseInt;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class NameActivity<socket> extends AppCompatActivity {
@@ -35,6 +31,7 @@ public class NameActivity<socket> extends AppCompatActivity {
     private String token;
     private Socket socket;
     private String name;
+    private String password;
     private String roles;
     private int gameId;
     @Override
@@ -94,9 +91,12 @@ public class NameActivity<socket> extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 name = edit_name.getText().toString();
+                password = edit_password.getText().toString();
+
                 Player.setName(name);
-                String password = edit_password.getText().toString();
+
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put("gameId", ""+gameId);
@@ -109,4 +109,6 @@ public class NameActivity<socket> extends AppCompatActivity {
             }
         });
     }
+    
+
 }
