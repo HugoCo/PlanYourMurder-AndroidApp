@@ -1,10 +1,14 @@
 package com.example.planyourmurder.ui.controller;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.planyourmurder.R;
@@ -63,6 +67,13 @@ public class HomePageActivity extends AppCompatActivity {
         gameId.setText(Player.getGameId()+"");
 
     }
+    public void replaceFragment() {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.inventory_layout, ObjectFragment.newInstance()); // newInstance() is a static factory method.
+        transaction.commit();
+    }
+
 
 
     @Override
