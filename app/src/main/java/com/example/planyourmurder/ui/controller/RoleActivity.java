@@ -97,6 +97,8 @@ public class RoleActivity extends AppCompatActivity {
             }
         });
     }
+
+
     AdapterView.OnItemClickListener listview_listener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
