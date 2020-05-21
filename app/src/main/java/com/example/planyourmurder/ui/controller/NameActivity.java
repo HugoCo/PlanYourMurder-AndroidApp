@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.example.planyourmurder.R;
 
+import com.example.planyourmurder.ui.model.Hashage;
 import com.example.planyourmurder.ui.model.Player;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
@@ -32,8 +33,10 @@ public class NameActivity<socket> extends AppCompatActivity {
     private Socket socket;
     private String name;
     private String password;
+    private String password_hasher = null;
     private String roles;
     private int gameId;
+    private Hashage hash = new Hashage();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,13 +98,22 @@ public class NameActivity<socket> extends AppCompatActivity {
                 name = edit_name.getText().toString();
                 password = edit_password.getText().toString();
 
+                try {
+                    password_hasher = hash.getHash(password);
+                } catch (Exception e) {
+                    System.out.println("J'ai pas pu recup le hash");
+                    e.printStackTrace();
+                }
+
+                System.out.println("Mot de Passe Hasher: " + password_hasher);
+
                 Player.setName(name);
 
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put("gameId", ""+gameId);
                     obj.put("username", name);
-                    obj.put("password", password);
+                    obj.put("password", password_hasher);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -109,6 +121,6 @@ public class NameActivity<socket> extends AppCompatActivity {
             }
         });
     }
-    
+
 
 }
