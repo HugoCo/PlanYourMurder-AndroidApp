@@ -54,7 +54,7 @@
         tools:layout="@layout/fragment_events" />
     <fragment
         android:id="@+id/nav_the_characters"
-        android:name="com.example.planyourmurder.ui.controller.TheCharactersFragment"
+        android:name="com.example.planyourmurder.ui.controller.ListCharactersFragment"
         android:label="@string/menu_the_characters"
-        tools:layout="@layout/fragment_the_characters" />
+        tools:layout="@layout/fragment_listcharacters" />
 </navigation>

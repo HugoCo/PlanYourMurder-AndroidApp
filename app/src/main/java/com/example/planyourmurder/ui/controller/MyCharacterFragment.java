@@ -1,9 +1,6 @@
 package com.example.planyourmurder.ui.controller;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.planyourmurder.R;
-import com.example.planyourmurder.ui.model.MyCharacterViewModel;
+import com.example.planyourmurder.ui.model.ListCharactersViewModel;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
 
@@ -25,7 +22,7 @@ import org.json.JSONObject;
 
 public class MyCharacterFragment extends Fragment {
 
-    private MyCharacterViewModel myCharacterViewModel;
+    private ListCharactersViewModel myCharacterViewModel;
 
     private TextView role_name;
     private TextView role_summary;
@@ -37,7 +34,7 @@ public class MyCharacterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         myCharacterViewModel =
-                ViewModelProviders.of(this).get(MyCharacterViewModel.class);
+                ViewModelProviders.of(this).get(ListCharactersViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mycharacter, container, false);
         final TextView role_name = root.findViewById(R.id.role_name);
         final TextView role_summary = root.findViewById(R.id.role_summary);
