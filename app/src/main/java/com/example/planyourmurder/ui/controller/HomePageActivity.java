@@ -74,6 +74,13 @@ public class HomePageActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void replaceFragmentCharacters() {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.list_characters_layout, OnecharacterFragment.newInstance()); // newInstance() is a static factory method.
+        transaction.commit();
+    }
+
 
 
     @Override

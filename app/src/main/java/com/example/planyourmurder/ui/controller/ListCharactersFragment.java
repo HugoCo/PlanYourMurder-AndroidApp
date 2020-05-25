@@ -38,7 +38,7 @@ public class ListCharactersFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        listView = root.findViewById(R.id.inventory_list_view);
+        listView = root.findViewById(R.id.characters_list_view);
         ArrayList<String> perso_list = new ArrayList<>();
         perso_list.add("Perso 1");
         perso_list.add("Perso 2");                      // TODO Récup liste player
@@ -53,7 +53,7 @@ public class ListCharactersFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((HomePageActivity)getActivity()).replaceFragment();
+                ((HomePageActivity)getActivity()).replaceFragmentCharacters();
             }
         });
 
