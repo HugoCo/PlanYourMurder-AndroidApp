@@ -34,7 +34,7 @@ public class ListCharactersFragment extends Fragment {
         try {
             JSONObject obj = new JSONObject();
             obj.put("status","ok");
-            socket.send("getPlayersData",obj.toString());
+            socket.send("getPlayersPage",obj.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
