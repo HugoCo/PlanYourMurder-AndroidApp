@@ -9,6 +9,15 @@ import java.io.Serializable;
 public class GameCharacter implements Serializable {
     private String name;
     private Bitmap image;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getName() {
         return name;
@@ -26,11 +35,12 @@ public class GameCharacter implements Serializable {
         this.image = image;
     }
 
-    public GameCharacter(String name, String image){
+    public GameCharacter(String name, String image, String description){
         byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         this.name=name;
         this.image=decodedByte;
+        this.description =description;
     }
 
     @Override

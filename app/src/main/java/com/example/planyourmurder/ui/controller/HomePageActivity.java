@@ -67,10 +67,10 @@ public class HomePageActivity extends AppCompatActivity {
         gameId.setText(Player.getGameId()+"");
 
     }
-    public void replaceFragment() {
+    public void replaceFragment(String object) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.inventory_layout, ObjectFragment.newInstance()); // newInstance() is a static factory method.
+        transaction.replace(R.id.inventory_layout, ObjectFragment.newInstance(object),"ObjectFrag"); // newInstance() is a static factory method.
         transaction.commit();
     }
 
