@@ -45,6 +45,7 @@ public class MyActionsFragment extends Fragment {
     private Socket socket;
     private ListView listView;
     private JSONArray listActionsDetails;
+    private ArrayList<String> mission_list;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,17 +63,11 @@ public class MyActionsFragment extends Fragment {
             e.printStackTrace();
         }
         listView = root.findViewById(R.id.myactions_list_view);
-        ArrayList<String> mission_list = new ArrayList<>();
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mission_list);
-        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ChooseActionActivity.class);
+                intent.putExtra("actionChosen", mission_list.get(position));
                 startActivity(intent);
             }
         });
@@ -85,7 +80,7 @@ public class MyActionsFragment extends Fragment {
                 try {
                     JSONObject homePageJson = new  JSONObject(data);
                     JSONObject characterActions = (JSONObject) homePageJson.get("characterActions");
-                    ArrayList<String> mission_list = new ArrayList<>();
+                    mission_list = new ArrayList<>();
                     ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mission_list);
                     listView.setAdapter(adapter);
 
