@@ -22,6 +22,7 @@ import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
 import com.example.planyourmurder.ui.model.TokenHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +37,8 @@ public class HomeFragment extends Fragment {
     private TextView hints;
     private TextView summary_scenario;
     private ImageView home_photo;
-
+    private TextView properties;
+    private String charact_properties;
 
 
     private HomeViewModel homeViewModel;
@@ -55,6 +57,9 @@ public class HomeFragment extends Fragment {
         this.summary_scenario=root.findViewById(R.id.scenario_summary);
         this.hints=root.findViewById(R.id.the_hints);
         this.home_photo=root.findViewById(R.id.home_photo);
+        this.properties=root.findViewById(R.id.properties);
+
+
 
         socket = SocketHandler.getSocket();
         try {
@@ -97,8 +102,39 @@ public class HomeFragment extends Fragment {
                         }
 
                         if(homePageJson.getString("characterHints")!="[]"){
-                            hints.setText(homePageJson.getString("characterHints"));
+
+                            System.out.println("Les indices: " + homePageJson.getString("characterHints"));
+
+                            JSONArray indices = homePageJson.getJSONArray("characterHints");
+                            String affichage="";
+                            for(int i=0; i<indices.length(); i++){
+
+                                JSONObject indice = indices.getJSONObject(i);
+
+                                affichage += (String) "--------------  " + indice.getString("name") + "  --------------\n" + indice.getString("description")+ "\n\n" ;
+                            }
+
+                            System.out.println("Indice: "+ affichage);
+                            hints.setText(affichage);
+
                         }
+
+
+                        /* TODO test état du joueur
+                        if(homePageJson.getString("characterProperties")!="null"){
+                            String Texte = "";
+
+                            if(homePageJson.getBoolean("alive")) {
+                                Texte = Texte + "Vous êtes Vivant !\n";
+                            } else Texte = Texte + "Vous êtes Mort !\n";
+
+                            if(homePageJson.getBoolean("protected")) {
+                                Texte = Texte + "Vous êtes protégé\n" ;
+                            }else Texte = Texte + "Vous êtes sans protection";
+
+                            properties.setText(Texte);
+                        }*/
+
 
                     }
                 } catch (JSONException e) {

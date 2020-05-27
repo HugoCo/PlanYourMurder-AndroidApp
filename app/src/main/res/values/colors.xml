@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimar">#673AB7</color>
-    <color name="colorPrimaryDark">#3F51B5</color>
-    <color name="colorAccent">#F44336</color>
+    <color name="rougeFonce">#7C1116</color>
     <color name="rouge">#BF1A21</color>
     <color name="jaune">#FDF2A3</color>
     <color name="blanc">#FFFFFF</color>

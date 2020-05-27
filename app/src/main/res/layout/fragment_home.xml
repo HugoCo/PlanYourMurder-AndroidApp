@@ -26,11 +26,10 @@
                 android:id="@+id/home_photo"
                 android:layout_width="104dp"
                 android:layout_height="93dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:baselineAligned="false"
-                android:contentDescription="TODO"
                 android:src="@drawable/ic_face_black_24dp"
                 android:translationX="230dp"
                 android:visibility="visible"
@@ -41,10 +40,10 @@
 
             <TextView
                 android:id="@+id/text_mycharacter"
-                android:layout_width="231dp"
-                android:layout_height="109dp"
+                android:layout_width="239dp"
+                android:layout_height="95dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="-80dp"
+                android:layout_marginTop="-100dp"
                 android:layout_marginBottom="24dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="@string/my_name"
@@ -68,14 +67,32 @@
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:translationX="10dp"
-                android:translationY="0dp"
-                tools:layout_editor_absoluteX="28dp"
-                tools:layout_editor_absoluteY="40dp" />
+                android:translationY="0dp" />
 
             <TextView
                 android:id="@+id/summary_role"
-                android:layout_width="match_parent"
-                android:layout_height="74dp"
+                android:layout_width="384dp"
+                android:layout_height="62dp"
+                android:text="Pas d'informations"
+                android:translationX="10dp" />
+
+            <TextView
+                android:id="@+id/announce_properties"
+                android:layout_width="198dp"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:fontFamily="@font/amarante"
+                android:lineSpacingExtra="5sp"
+                android:text="Etat du Joueur"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:translationX="10dp"
+                android:translationY="0dp" />
+
+            <TextView
+                android:id="@+id/properties"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
@@ -95,8 +112,8 @@
 
             <TextView
                 android:id="@+id/scenario_title"
-                android:layout_width="match_parent"
-                android:layout_height="84dp"
+                android:layout_width="368dp"
+                android:layout_height="60dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
@@ -115,8 +132,8 @@
 
             <TextView
                 android:id="@+id/scenario_summary"
-                android:layout_width="match_parent"
-                android:layout_height="143dp"
+                android:layout_width="386dp"
+                android:layout_height="110dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
@@ -138,10 +155,11 @@
 
             <TextView
                 android:id="@+id/the_hints"
-                android:layout_width="match_parent"
-                android:layout_height="126dp"
+                android:layout_width="381dp"
+                android:layout_height="122dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
+
 
 
         </LinearLayout>
