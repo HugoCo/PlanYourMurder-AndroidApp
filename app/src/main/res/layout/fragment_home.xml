@@ -83,7 +83,7 @@
                 android:baselineAligned="false"
                 android:fontFamily="@font/amarante"
                 android:lineSpacingExtra="5sp"
-                android:text="Etat du Joueur"
+                android:text="Votre Etat"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:translationX="10dp"
@@ -91,8 +91,8 @@
 
             <TextView
                 android:id="@+id/properties"
-                android:layout_width="160dp"
-                android:layout_height="50dp"
+                android:layout_width="386dp"
+                android:layout_height="62dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
