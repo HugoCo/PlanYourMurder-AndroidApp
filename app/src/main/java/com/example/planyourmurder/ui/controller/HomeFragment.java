@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -25,6 +26,7 @@ import com.example.planyourmurder.ui.model.TokenHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.content.Intent;
 
 public class HomeFragment extends Fragment {
 
@@ -38,7 +40,6 @@ public class HomeFragment extends Fragment {
     private TextView summary_scenario;
     private ImageView home_photo;
     private TextView properties;
-    private String charact_properties;
 
 
     private HomeViewModel homeViewModel;
@@ -107,33 +108,47 @@ public class HomeFragment extends Fragment {
 
                             JSONArray indices = homePageJson.getJSONArray("characterHints");
                             String affichage="";
+
                             for(int i=0; i<indices.length(); i++){
-
                                 JSONObject indice = indices.getJSONObject(i);
-
                                 affichage += (String) "--------------  " + indice.getString("name") + "  --------------\n" + indice.getString("description")+ "\n\n" ;
                             }
 
-                            System.out.println("Indice: "+ affichage);
                             hints.setText(affichage);
 
                         }
 
 
-                        /* TODO test état du joueur
-                        if(homePageJson.getString("characterProperties")!="null"){
+                        // TODO VOIR COMMENT RECUP DONNEES !
+
+                        Intent intent = getIntent();
+                        if (intent.hasExtra("alive")){
+                            boolean alive = intent.getBooleanExtra("alive", true);
+                            boolean protect = intent.getBooleanExtra("protected", false);
+                            boolean poisoned = intent.getBooleanExtra("poisoned", true);
+
                             String Texte = "";
 
-                            if(homePageJson.getBoolean("alive")) {
-                                Texte = Texte + "Vous êtes Vivant !\n";
-                            } else Texte = Texte + "Vous êtes Mort !\n";
+                            if(alive && !protect && !poisoned){
 
-                            if(homePageJson.getBoolean("protected")) {
-                                Texte = Texte + "Vous êtes protégé\n" ;
-                            }else Texte = Texte + "Vous êtes sans protection";
+                                Texte = "Tout va bien pour vous !";
 
+                            } else {
+
+                                if (!alive) {
+                                    Texte = Texte + "Malheuresement, vous êtes Mort!\n";
+                                }
+
+                                if (protect) {
+                                    Texte = Texte + "Super, vous êtes protégé\n";
+                                }
+
+                                if (poisoned) {
+                                    Texte = Texte + "Attention, vous êtes empoisonné\n";
+                                }
+                            }
                             properties.setText(Texte);
-                        }*/
+                        }
 
 
                     }
