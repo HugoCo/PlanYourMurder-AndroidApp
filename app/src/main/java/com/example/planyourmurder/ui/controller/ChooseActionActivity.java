@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.planyourmurder.R;
 import com.example.planyourmurder.ui.model.Socket;
@@ -97,8 +98,6 @@ public class ChooseActionActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     socket.send("actionResult", obj.toString());
-                    Intent homePageIntent = new Intent(ChooseActionActivity.this, HomePageActivity.class);
-                    startActivity(homePageIntent);
                 }
             }
         });
@@ -132,6 +131,23 @@ public class ChooseActionActivity extends AppCompatActivity {
         };
         socket.onEventResponse("makeAction", socketPairListener);
 
+        Socket.OnEventResponseListener socketPairListenerAR = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                if(status.equals("ok")) {
+                    Toast.makeText(ChooseActionActivity.this, "Action effectuée", Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Toast.makeText(ChooseActionActivity.this, "Problème ! L'action n'a pas été effectuée", Toast.LENGTH_LONG).show();
+                }
+                Intent homePageIntent = new Intent(ChooseActionActivity.this, HomePageActivity.class);
+                startActivity(homePageIntent);
+            }
+        };
+        socket.onEventResponse("actionResult", socketPairListenerAR);
+
     }
+    
 
 }

@@ -101,6 +101,56 @@ public class HomeFragment extends Fragment {
                         if(homePageJson.getString("scenarioSummary")!="null"){
                             summary_scenario.setText(homePageJson.getString("scenarioSummary"));
                         }
+                        if(homePageJson.getString("characterProperties") != "null"){
+                            JSONObject chprop = homePageJson.getJSONObject("characterProperties");
+                            if (chprop.getString("alive") == "true"){
+                                boolean alive = true;
+                                boolean protect=false;
+                                try {
+                                    if (chprop.getString("protected") == "true") {
+                                        protect = true;
+                                    } else {
+                                        protect = false;
+                                    }
+                                }
+                                catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                                boolean poisoned=false;
+                                try {
+                                    if (chprop.getString("poisoned") != "null") {
+                                        poisoned = true;
+                                    } else {
+                                        poisoned = false;
+                                    }
+                                }
+                                catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+
+                                String Texte = "";
+
+                                if(alive && !protect && !poisoned){
+
+                                    Texte = "Tout va bien pour vous !";
+
+                                } else {
+
+                                    if (!alive) {
+                                        Texte = Texte + "Malheuresement, vous êtes Mort!\n";
+                                    }
+
+                                    if (protect) {
+                                        Texte = Texte + "Super, vous êtes protégé\n";
+                                    }
+
+                                    if (poisoned) {
+                                        Texte = Texte + "Attention, vous êtes empoisonné\n";
+                                    }
+                                }
+                                properties.setText(Texte);
+                            }
+                        }
 
                         if(homePageJson.getString("characterHints")!="[]"){
 
@@ -117,40 +167,6 @@ public class HomeFragment extends Fragment {
                             hints.setText(affichage);
 
                         }
-
-
-                        // TODO VOIR COMMENT RECUP DONNEES !
-
-                        Intent intent = getIntent();
-                        if (intent.hasExtra("alive")){
-                            boolean alive = intent.getBooleanExtra("alive", true);
-                            boolean protect = intent.getBooleanExtra("protected", false);
-                            boolean poisoned = intent.getBooleanExtra("poisoned", true);
-
-                            String Texte = "";
-
-                            if(alive && !protect && !poisoned){
-
-                                Texte = "Tout va bien pour vous !";
-
-                            } else {
-
-                                if (!alive) {
-                                    Texte = Texte + "Malheuresement, vous êtes Mort!\n";
-                                }
-
-                                if (protect) {
-                                    Texte = Texte + "Super, vous êtes protégé\n";
-                                }
-
-                                if (poisoned) {
-                                    Texte = Texte + "Attention, vous êtes empoisonné\n";
-                                }
-                            }
-                            properties.setText(Texte);
-                        }
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -158,6 +174,7 @@ public class HomeFragment extends Fragment {
             }
         };
         socket.onEventResponse("getHomePage", socketPairListener);
+
 
         return root;
     }
