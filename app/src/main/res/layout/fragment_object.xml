@@ -14,11 +14,11 @@
         android:layout_width="137dp"
         android:layout_height="127dp"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="400dp"
         android:src="@drawable/ic_add_a_photo_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
@@ -35,11 +35,11 @@
         app:layout_constraintVertical_bias="0.245" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/object_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="344dp"
-        android:text="ObjectName"
+        android:text="@string/objectname"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

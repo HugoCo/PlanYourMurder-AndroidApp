@@ -58,5 +58,6 @@
     <string name="the_hints">Impossible de récupérer les indices</string>
     <string name="scenario_title">Impossible de récupérer le nom du scénario</string>
     <string name="scenario_summary">Impossible de récupérer le résumé du scénario</string>
+    <string name="objectname">ObjectName</string>
 
 </resources>

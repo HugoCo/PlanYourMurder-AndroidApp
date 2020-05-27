@@ -1,6 +1,7 @@
 
 package com.example.planyourmurder.ui.controller;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -11,7 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +45,7 @@ public class MyActionsFragment extends Fragment {
 
     private MyActionsViewModel missionsViewModel;
     private Socket socket;
-    private SwipeMenuListView listView;
+    private ListView listView;
     private JSONArray listActionsDetails;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,13 +53,7 @@ public class MyActionsFragment extends Fragment {
         missionsViewModel =
                 ViewModelProviders.of(this).get(MyActionsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_myactions, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        missionsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
 
         socket = SocketHandler.getSocket();
         try {
@@ -66,7 +63,22 @@ public class MyActionsFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        listView = root.findViewById(R.id.listView);
+        listView = root.findViewById(R.id.myactions_list_view);
+        ArrayList<String> mission_list = new ArrayList<>();
+        mission_list.add("salut");
+        mission_list.add("salut");
+        mission_list.add("salut");
+        mission_list.add("salut");
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mission_list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ChooseActionActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
             @Override
@@ -98,61 +110,6 @@ public class MyActionsFragment extends Fragment {
 
 
 
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        getActivity().getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(170);
-                // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);
-
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        getActivity().getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(170);
-                // set a icon
-                deleteItem.setIcon(R.drawable.ic_check_black_24dp);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-
-        listView.setMenuCreator(creator);
-
-        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index) {
-                    case 0:
-                        // open
-                        Log.d(TAG, "onMenuItemClick : clicked item "+index);
-                        break;
-                    case 1:
-                        // delete
-                        Log.d(TAG, "onMenuItemClick : clicked item "+index);
-                        break;
-                }
-                // false : close the menu; true : not close the menu
-                return false;
-            }
-        });
 
         return root;
     }

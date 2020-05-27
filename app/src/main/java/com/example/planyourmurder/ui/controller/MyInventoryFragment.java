@@ -33,6 +33,7 @@ import com.example.planyourmurder.ui.model.MyInventoryViewModel;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,6 +45,7 @@ public class MyInventoryFragment extends Fragment {
     private MyInventoryViewModel myInventoryViewModel;
     private Socket socket;
     private ListView listView;
+    private JSONArray objects;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -59,24 +61,18 @@ public class MyInventoryFragment extends Fragment {
             e.printStackTrace();
         }
         listView = root.findViewById(R.id.inventory_list_view);
-        ArrayList<String> mission_list = new ArrayList<>();
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
-        mission_list.add("salut");
+        final ArrayList<String> inventory_list = new ArrayList<>();
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mission_list);
-        listView.setAdapter(adapter);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((HomePageActivity)getActivity()).replaceFragment();
+                try {
+                    ((HomePageActivity)getActivity()).replaceFragment(objects.get(position)+"");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -85,10 +81,15 @@ public class MyInventoryFragment extends Fragment {
             public void onMessage(String event, String status, String data) {
                 try {
                     JSONObject MyInventoryPageJson = new  JSONObject(data);
+                    objects = new JSONArray(MyInventoryPageJson.getString("characterObject"));
 
-                    if (status.equals("ok"))
+                    if (status.equals("ok") && objects.length() != 0)
                     {
-
+                        for (int i = 0; i<objects.length();i++) {
+                            inventory_list.add(objects.get(i)+"");
+                        }
+                        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, inventory_list);
+                        listView.setAdapter(adapter);
 
                     }
                 } catch (JSONException e) {
