@@ -1,5 +1,6 @@
 package com.example.planyourmurder.ui.controller;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -68,11 +69,18 @@ public class MyInventoryFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent objectIntent = new Intent(getActivity(), ObjectActivity.class);
                 try {
-                    ((HomePageActivity)getActivity()).replaceFragment(objects.get(position)+"");
+                    objectIntent.putExtra("objectName", ""+objects.get(position));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                startActivity(objectIntent);
+                /*try {
+                    ((HomePageActivity)getActivity()).replaceFragment(objects.get(position)+"");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
             }
         });
 

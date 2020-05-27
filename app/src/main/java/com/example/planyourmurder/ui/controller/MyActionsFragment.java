@@ -32,9 +32,7 @@ import com.example.planyourmurder.ui.model.MyActionsViewModel;
 import com.example.planyourmurder.ui.model.Socket;
 import com.example.planyourmurder.ui.model.SocketHandler;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -82,6 +80,7 @@ public class MyActionsFragment extends Fragment {
 
         Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
             @Override
+
             public void onMessage(String event, String status, String data) {
                 try {
                     JSONObject homePageJson = new  JSONObject(data);
@@ -94,12 +93,12 @@ public class MyActionsFragment extends Fragment {
 
                     if (status.equals("ok"))
                     {
-                        for (Iterator key = characterActions.keys(); key.hasNext();) {
-                            mission_list.add((String) key.next());
-                            JSONObject name = (JSONObject) characterActions.get((String) key.next());
-                            listActionsDetails.put(name);
-                        }
+                        Iterator < ? > keys = characterActions.keys();
 
+                        while (keys.hasNext()) {
+                            String key = (String) keys.next();
+                            mission_list.add(key);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

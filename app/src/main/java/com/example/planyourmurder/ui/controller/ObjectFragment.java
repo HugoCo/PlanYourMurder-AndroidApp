@@ -23,6 +23,7 @@ public class ObjectFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static Object objectName;
+    private TextView objectNametv;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -44,15 +45,11 @@ public class ObjectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_object, container, false);
-        final TextView objectNametv = root.findViewById(R.id.object_name_text_view);
+        this.objectNametv = root.findViewById(R.id.object_name);
         System.out.println("test");
-        (getActivity()).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                (objectNametv).setText("test");
-            }
-        });
+        this.objectNametv.setText("test");
         return inflater.inflate(R.layout.fragment_object, container, false);
     }
     public static ObjectFragment newInstance(String object) {

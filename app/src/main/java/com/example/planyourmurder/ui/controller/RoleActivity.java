@@ -55,7 +55,8 @@ public class RoleActivity extends AppCompatActivity {
                 JSONObject data = (JSONObject) dataArray.get(i);
                 String name = (String) data.get("name");
                 String image = (String) data.get("image");
-                chars.add(new GameCharacter(name,image));
+                String desc = (String) "";
+                chars.add(new GameCharacter(name,image,desc));
                 System.out.println(chars.get(i).getName());
 
             }
