@@ -12,30 +12,22 @@
         android:layout_marginRight="6dip"
         android:layout_marginBottom="0dp"
         android:contentDescription="" />
+
     <TextView
         android:id="@+id/namechar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/imchar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_toRightOf="@id/imchar"
         android:gravity="center_vertical"
         android:text="Title" />
 
-    <TextView
-        android:id="@+id/descchar"
-        android:layout_width="295dp"
-        android:layout_height="29dp"
-        android:layout_below="@id/namechar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="6dp"
-        android:layout_toRightOf="@id/imchar"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:text="Second line" />
 </RelativeLayout>

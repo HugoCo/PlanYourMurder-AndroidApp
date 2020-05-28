@@ -133,7 +133,7 @@
             <TextView
                 android:id="@+id/scenario_summary"
                 android:layout_width="386dp"
-                android:layout_height="110dp"
+                android:layout_height="89dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
@@ -155,8 +155,8 @@
 
             <TextView
                 android:id="@+id/the_hints"
-                android:layout_width="381dp"
-                android:layout_height="122dp"
+                android:layout_width="413dp"
+                android:layout_height="267dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
