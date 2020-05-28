@@ -10,12 +10,14 @@
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <ListView
             android:id="@+id/inventory_list_view"
             android:layout_width="match_parent"
-            android:layout_height="341dp" />
+            android:layout_height="708dp" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
