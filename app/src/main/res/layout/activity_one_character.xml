@@ -63,8 +63,8 @@
 
     <TextView
         android:id="@+id/description_one_character"
-        android:layout_width="357dp"
-        android:layout_height="47dp"
+        android:layout_width="356dp"
+        android:layout_height="98dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         android:text="Je suis une description de role"
@@ -73,8 +73,8 @@
 
     <TextView
         android:id="@+id/one_character_thoughts"
-        android:layout_width="357dp"
-        android:layout_height="47dp"
+        android:layout_width="360dp"
+        android:layout_height="109dp"
         android:layout_marginTop="16dp"
         android:text="Je suis une description de pensée"
         app:layout_constraintEnd_toEndOf="parent"

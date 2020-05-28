@@ -15,17 +15,17 @@
 
     <TextView
         android:id="@+id/namechar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="295dp"
+        android:layout_height="53dp"
         android:layout_alignWithParentIfMissing="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:layout_toRightOf="@id/imchar"
         android:gravity="center_vertical"
         android:text="Title" />

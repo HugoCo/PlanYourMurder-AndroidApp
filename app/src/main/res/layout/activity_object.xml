@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/object_name_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="197dp"
+        android:layout_height="46dp"
         android:layout_marginTop="40dp"
         android:text="@string/objectname"
         android:textSize="30sp"
@@ -31,8 +31,8 @@
 
     <TextView
         android:id="@+id/description_object_text_view"
-        android:layout_width="359dp"
-        android:layout_height="91dp"
+        android:layout_width="378dp"
+        android:layout_height="391dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
