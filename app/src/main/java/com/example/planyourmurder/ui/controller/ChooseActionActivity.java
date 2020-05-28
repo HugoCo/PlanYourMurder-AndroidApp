@@ -34,6 +34,7 @@ public class ChooseActionActivity extends AppCompatActivity {
     private JSONArray returnTab = new JSONArray();
     private int numberOfPagesToDisplay;
     private int pageNumero;
+    private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +63,15 @@ public class ChooseActionActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String [] result = new String[1];
                 try {
                     System.out.println(possibilities.get(position));
-                    result[0] = ""+possibilities.get(position);
+                    result = ""+possibilities.get(position);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                System.out.println("result = "+ Arrays.toString(result));
-                returnTab.put(Arrays.toString(result));
+                System.out.println("result = "+ result);
+                returnTab.put(result);
                 if(numberOfPagesToDisplay>0) {
                     try {
 

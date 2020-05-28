@@ -2,6 +2,7 @@ package com.example.planyourmurder.ui.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -79,5 +80,28 @@ public class OneCharacterActivity extends AppCompatActivity {
             }
         };
         socket.onEventResponse("getPlayerData", socketPairListener);
+
+        Socket.OnEventResponseListener socketPairListenerNotif = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    System.out.println(data);
+                    JSONObject notificationJson = new  JSONObject(data);
+
+                    if (status.equals("ok"))
+                    {
+                        new AlertDialog.Builder(OneCharacterActivity.this)
+                                .setTitle(notificationJson.getString("type"))
+                                .setMessage(notificationJson.getString("message"))
+                                .setPositiveButton("ok", null)
+                                .create()
+                                .show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("notification", socketPairListenerNotif);
     }
 }
