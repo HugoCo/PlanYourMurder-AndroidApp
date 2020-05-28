@@ -54,7 +54,7 @@ public class HomePageActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "mdr t'as cru ça faisait quelque chose", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Indiquez vos problèmes sur https://github.com/PYM-Team/AndroidApp", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
