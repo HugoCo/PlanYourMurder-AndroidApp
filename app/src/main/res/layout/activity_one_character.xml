@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.controller.ObjectActivity">
+
+    <ImageView
+        android:id="@+id/one_character_photo"
+        android:layout_width="114dp"
+        android:layout_height="100dp"
+
+        android:src="@drawable/ic_people_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/one_character_name_text_view" />
+
+    <TextView
+        android:id="@+id/one_character_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom du role"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description_one_character_title"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:baselineAligned="false"
+        android:fontFamily="@font/amarante"
+        android:lineSpacingExtra="30sp"
+        android:text="Description"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:translationX="10dp"
+        android:translationY="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/one_character_photo" />
+
+    <TextView
+        android:id="@+id/one_character_thoughts_title"
+        android:layout_width="278dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:baselineAligned="false"
+        android:fontFamily="@font/amarante"
+        android:lineSpacingExtra="30sp"
+        android:text="Ce que je pense de lui"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:translationX="10dp"
+        android:translationY="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_one_character" />
+
+    <TextView
+        android:id="@+id/description_one_character"
+        android:layout_width="357dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:text="Je suis une description de role"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_one_character_title" />
+
+    <TextView
+        android:id="@+id/one_character_thoughts"
+        android:layout_width="357dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:text="Je suis une description de pensée"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/one_character_thoughts_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>

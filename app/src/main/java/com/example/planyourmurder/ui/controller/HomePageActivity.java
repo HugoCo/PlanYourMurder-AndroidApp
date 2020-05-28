@@ -1,10 +1,15 @@
 package com.example.planyourmurder.ui.controller;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -13,6 +18,8 @@ import android.widget.TextView;
 
 import com.example.planyourmurder.R;
 import com.example.planyourmurder.ui.model.Player;
+import com.example.planyourmurder.ui.model.Socket;
+import com.example.planyourmurder.ui.model.SocketHandler;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -25,11 +32,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class HomePageActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView name;
     private TextView number_game;
+    private Socket socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +76,30 @@ public class HomePageActivity extends AppCompatActivity {
         TextView gameId = (TextView) headerView.findViewById(R.id.game_id_nav);
         name.setText(Player.getName());
         gameId.setText(Player.getGameId()+"");
+
+        socket = SocketHandler.getSocket();
+        Socket.OnEventResponseListener socketPairListener = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    System.out.println(data);
+                    JSONObject notificationJson = new  JSONObject(data);
+
+                    if (status.equals("ok"))
+                    {
+                        new AlertDialog.Builder(HomePageActivity.this)
+                                .setTitle(notificationJson.getString("type"))
+                                .setMessage(notificationJson.getString("message"))
+                                .setPositiveButton("ok", null)
+                                .create()
+                                .show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("notification", socketPairListener);
 
     }
     public void replaceFragment(String object) {

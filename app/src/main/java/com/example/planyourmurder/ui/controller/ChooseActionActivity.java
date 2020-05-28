@@ -113,16 +113,20 @@ public class ChooseActionActivity extends AppCompatActivity {
                         JSONObject ChooseActionPageJson = new  JSONObject(data);
                         actionData = (JSONArray) ChooseActionPageJson.get("choices");
                         ArrayList<String> list = new ArrayList<>();
-                        numberOfPagesToDisplay = actionData.length()-1;
-                        JSONObject choice = (JSONObject) actionData.get(0);
-                        messagetv.setText(choice.getString("message"));
-                        possibilities = (JSONArray) choice.get("possibilities");
-                        for (int i=0; i<possibilities.length();i++) {
-                            list.add(""+possibilities.get(i));
+                        numberOfPagesToDisplay = actionData.length();
+                        if (numberOfPagesToDisplay !=0) {
+                            JSONObject choice = (JSONObject) actionData.get(0);
+                            messagetv.setText(choice.getString("message"));
+                            possibilities = (JSONArray) choice.get("possibilities");
+                            for (int i=0; i<possibilities.length();i++) {
+                                list.add(""+possibilities.get(i));
+                            }
+                            ArrayAdapter adapter = new ArrayAdapter(ChooseActionActivity.this, android.R.layout.simple_list_item_1, list);
+                            listView.setAdapter(adapter);
+                            numberOfPagesToDisplay -= 1;
+                            pageNumero = 1;
                         }
-                        ArrayAdapter adapter = new ArrayAdapter(ChooseActionActivity.this, android.R.layout.simple_list_item_1, list);
-                        listView.setAdapter(adapter);
-                        pageNumero = 1;
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

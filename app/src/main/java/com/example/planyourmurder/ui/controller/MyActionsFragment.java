@@ -92,7 +92,9 @@ public class MyActionsFragment extends Fragment {
 
                         while (keys.hasNext()) {
                             String key = (String) keys.next();
-                            mission_list.add(key);
+                            if(characterActions.getJSONObject(key).getString("possible").equals("true")){
+                                mission_list.add(key);
+                            }
                         }
                     }
                 } catch (JSONException e) {

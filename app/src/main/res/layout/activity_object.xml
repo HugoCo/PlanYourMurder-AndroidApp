@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/object_photo"
         android:layout_width="137dp"
         android:layout_height="127dp"
 
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/description_object_text_view"
         android:layout_width="359dp"
         android:layout_height="91dp"
         android:layout_marginStart="16dp"
@@ -58,5 +58,5 @@
         android:translationX="10dp"
         android:translationY="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/object_photo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
