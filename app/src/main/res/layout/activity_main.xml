@@ -29,7 +29,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/activity_main_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

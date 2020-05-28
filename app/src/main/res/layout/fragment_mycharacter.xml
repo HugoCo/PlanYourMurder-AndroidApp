@@ -56,12 +56,12 @@
             <TextView
                 android:id="@+id/role_name"
                 android:layout_width="336dp"
-                android:layout_height="110dp"
+                android:layout_height="117dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="pas d'informations"
                 android:textColor="#711F19"
-                android:textSize="36sp"
+                android:textSize="32sp"
                 android:translationX="10dp" />
 
             <TextView
