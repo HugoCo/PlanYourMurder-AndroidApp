@@ -71,7 +71,7 @@
 
             <TextView
                 android:id="@+id/summary_role"
-                android:layout_width="384dp"
+                android:layout_width="320dp"
                 android:layout_height="62dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/properties"
-                android:layout_width="386dp"
+                android:layout_width="326dp"
                 android:layout_height="62dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
@@ -112,7 +112,7 @@
 
             <TextView
                 android:id="@+id/scenario_title"
-                android:layout_width="368dp"
+                android:layout_width="323dp"
                 android:layout_height="60dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
@@ -132,7 +132,7 @@
 
             <TextView
                 android:id="@+id/scenario_summary"
-                android:layout_width="386dp"
+                android:layout_width="335dp"
                 android:layout_height="89dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
@@ -155,8 +155,8 @@
 
             <TextView
                 android:id="@+id/the_hints"
-                android:layout_width="413dp"
-                android:layout_height="267dp"
+                android:layout_width="341dp"
+                android:layout_height="263dp"
                 android:text="Pas d'informations"
                 android:translationX="10dp" />
 
