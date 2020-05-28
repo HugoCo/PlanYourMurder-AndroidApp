@@ -7,6 +7,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.planyourmurder.R;
 
 import com.example.planyourmurder.ui.model.Hashage;
@@ -80,9 +82,18 @@ public class NameActivity<socket> extends AppCompatActivity {
                         token = loginJson.getString("token");
                         TokenHandler.setToken(token);
                         roles = loginJson.getString("roles");
-                        Intent roleIntent = new Intent(NameActivity.this, RoleActivity.class);
-                        roleIntent.putExtra("roles",roles);
-                        startActivity(roleIntent);
+                        if (roles != "null") {
+                            Intent roleIntent = new Intent(NameActivity.this, RoleActivity.class);
+                            roleIntent.putExtra("roles", roles);
+                            startActivity(roleIntent);
+                        }
+                        else {
+                            Intent homePageIntent = new Intent(NameActivity.this, HomePageActivity.class);
+                            startActivity(homePageIntent);
+                        }
+                    } else {
+                        String message ="Nom d'utilisateur déjà utilisé et mauvais mot de passe";
+                        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
