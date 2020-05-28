@@ -22,10 +22,8 @@
         android:id="@+id/list_char"
         android:layout_width="416dp"
         android:layout_height="514dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="144dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.981"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
