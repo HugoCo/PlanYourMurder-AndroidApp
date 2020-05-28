@@ -8,11 +8,13 @@
 
     <TextView
         android:id="@+id/object_name_text_view"
-        android:layout_width="197dp"
-        android:layout_height="46dp"
+        android:layout_width="277dp"
+        android:layout_height="78dp"
         android:layout_marginTop="40dp"
+        android:layout_marginBottom="6dp"
         android:text="@string/objectname"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/object_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +25,7 @@
         android:layout_width="137dp"
         android:layout_height="127dp"
 
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="128dp"
         android:src="@drawable/ic_add_a_photo_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +33,8 @@
 
     <TextView
         android:id="@+id/description_object_text_view"
-        android:layout_width="378dp"
-        android:layout_height="391dp"
+        android:layout_width="362dp"
+        android:layout_height="347dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
