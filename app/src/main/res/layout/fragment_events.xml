@@ -39,7 +39,7 @@
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:layout_marginTop="250dp"
-            android:text="Pas encore d'évènements récents"
+            android:text="Il n'y a pas eu encore d'évènements"
             android:textAlignment="center"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
