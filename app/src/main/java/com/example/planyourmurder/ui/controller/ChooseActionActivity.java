@@ -184,6 +184,7 @@ public class ChooseActionActivity extends AppCompatActivity {
         };
         socket.onEventResponse("notification", socketPairListenerNotif);
 
+
     }
     
 

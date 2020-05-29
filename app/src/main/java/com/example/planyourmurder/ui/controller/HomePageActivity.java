@@ -100,6 +100,24 @@ public class HomePageActivity extends AppCompatActivity {
             }
         };
         socket.onEventResponse("notification", socketPairListener);
+        Socket.OnEventResponseListener socketPairListenerReload = new Socket.OnEventResponseListener() {
+            @Override
+            public void onMessage(String event, String status, String data) {
+                try {
+                    System.out.println(data);
+                    JSONObject notificationJson = new  JSONObject(data);
+
+                    if (status.equals("ok"))
+                    {
+                        Intent homePageIntent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                        startActivity(homePageIntent);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        socket.onEventResponse("reloadPage", socketPairListenerReload);
 
     }
     public void replaceFragment(String object) {
@@ -115,6 +133,8 @@ public class HomePageActivity extends AppCompatActivity {
         transaction.replace(R.id.list_characters_layout, OnecharacterFragment.newInstance()); // newInstance() is a static factory method.
         transaction.commit();
     }
+
+
 
 
 
