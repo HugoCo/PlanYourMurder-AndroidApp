@@ -3,6 +3,7 @@ package com.example.planyourmurder.ui.controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -145,9 +146,10 @@ public class ChooseActionActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(ChooseActionActivity.this, "Problème ! L'action n'a pas été effectuée", Toast.LENGTH_LONG).show();
+                    Intent homePageIntent = new Intent(ChooseActionActivity.this, HomePageActivity.class);
+                    startActivity(homePageIntent);
                 }
-                Intent homePageIntent = new Intent(ChooseActionActivity.this, HomePageActivity.class);
-                startActivity(homePageIntent);
+
             }
         };
         socket.onEventResponse("actionResult", socketPairListenerAR);
@@ -161,10 +163,17 @@ public class ChooseActionActivity extends AppCompatActivity {
 
                     if (status.equals("ok"))
                     {
+                        DialogInterface.OnClickListener listener;
                         new AlertDialog.Builder(ChooseActionActivity.this)
                                 .setTitle(notificationJson.getString("type"))
                                 .setMessage(notificationJson.getString("message"))
-                                .setPositiveButton("ok", null)
+                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent homePageIntent = new Intent(ChooseActionActivity.this, HomePageActivity.class);
+                                        startActivity(homePageIntent);
+                                    }
+                                })
                                 .create()
                                 .show();
                     }
